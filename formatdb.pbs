@@ -1,0 +1,17 @@
+#PBS -N formatdb
+#name you want to give your job
+#PBS -l nodes=1:ppn=2
+#request 1 nodes w/8 processors per node (please use 8 unless you have a good reason not to.)
+#PBS -l walltime=5:00:00
+# request 1 hour of  walltime.  your job will be killed if it goes over.
+# Your job will start sooner, the shorter the walltime.
+#PBS  -j oe
+#  Join output log with error log (remove if you want separate error and output files)
+#PBS -m abe -M ruchi.verma@okstate.edu
+# send me email when job aborts, begins and exits
+cd $PBS_O_WORKDIR
+/share/apps/blast-2.2.23/bin/formatdb -i /home/rverma/mps_pro/grape_vine_high_454_20.percentage_cp1.fna -p F -n /home/rverma/mps_pro/grape_vine_454_20percp1
+/share/apps/blast-2.2.23/bin/formatdb -i /home/rverma/mps_pro/grape_vine_high_454_20.percentage_cp2.fna -p F -n /home/rverma/mps_pro/grape_vine_454_20percp2
+/share/apps/blast-2.2.23/bin/formatdb -i /home/rverma/mps_pro/grape_vine_high_454_20.percentage_cp3.fna -p F -n /home/rverma/mps_pro/grape_vine_454_20percp3
+
+

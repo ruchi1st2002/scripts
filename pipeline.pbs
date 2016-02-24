@@ -1,0 +1,21 @@
+#!/bin/bash
+#PBS -q express
+#   specify the queue batch, express or bigmem
+
+#PBS -N pipeline.pbs 
+#name you want to give your job 
+#PBS -l nodes=2:ppn=12  
+#request 1 nodes w/8 processors per node (please use 8 unless you have a good reason not to.)  
+#PBS -l walltime=00:30:00
+# request 1 hour of  walltime.  your job will be killed if it goes over.  
+# Your job will start sooner, the shorter the walltime.
+#PBS  -j oe
+#  Join output log with error log (remove if you want separate error and output files)
+#PBS -m abe -M ruchi1st2002@gmail.com
+# send me email when job aborts, begins and exits
+module load bioperl
+cd $PBS_O_WORKDIR
+
+#perl Pipeline.pl -p ep_m15_P80_xxx_home -P 80 -t sm.fasta -n sp.fasta -m 15 -l 80
+
+perl Pipeline2.0.pl -p ep_m15_P80-copy -P 80 -t sm_con.fasta -n sp_con.fasta -m 15 -l 80
